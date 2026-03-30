@@ -1,0 +1,19 @@
+# Secrets and credentials — never commit these
+.env
+credentials.json
+token.json
+token_tasks.json
+
+# Personal config
+telegram_bot/config.yaml
+
+# Runtime
+logs/*.log
+logs/*.jsonl
+memory/*.md
+!memory/.gitkeep
+__pycache__/
+*.pyc
+venv/
+.bot.pid
+.write.lock

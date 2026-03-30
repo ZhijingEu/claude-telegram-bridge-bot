@@ -1,0 +1,10 @@
+# Direct dependencies (unpinned — for reference only)
+# For installs use: pip install -r requirements-lock.txt  (pinned versions, security-safe)
+# To regenerate lockfile after intentional upgrade: pip freeze > requirements-lock.txt
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+python-dotenv
+python-telegram-bot>=20.0
+anthropic
+pyyaml

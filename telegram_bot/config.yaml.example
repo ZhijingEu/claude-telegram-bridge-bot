@@ -1,0 +1,102 @@
+# config.yaml — Personal configuration for the Telegram Calendar Assistant
+#
+# SETUP:
+#   1. Copy this file to config.yaml
+#   2. Fill in your details below
+#   3. config.yaml is gitignored — your personal data stays local
+#
+# Telegram user IDs and API keys go in .env (they are secrets).
+# This file holds the structured config that personalises the bot.
+
+# ---------------------------------------------------------------------------
+# Timezone and location
+# ---------------------------------------------------------------------------
+timezone: "Asia/Singapore"        # IANA timezone name, e.g. "Europe/London"
+location_hint: "western Singapore" # Used in AI responses for travel/location queries
+
+# ---------------------------------------------------------------------------
+# Google Calendar IDs
+# ---------------------------------------------------------------------------
+# Find these in Google Calendar → Settings → click a calendar → Calendar ID
+calendars:
+  primary: "your.email@gmail.com"
+  family: "your_family_calendar_id@group.calendar.google.com"
+
+# ---------------------------------------------------------------------------
+# Users
+# ---------------------------------------------------------------------------
+# primary   = the main user (receives security alerts, full access)
+# secondary = optional second user (e.g. partner) — remove block if not needed
+#
+# Telegram IDs are set in .env — each user's env var name is set in telegram_env_var below
+# calendar_prefix = how this user signs events in the shared family calendar
+#                   e.g. if events are "Alice - Dentist", the prefix is "Alice"
+users:
+  primary:
+    display_name: "Your Name"
+    calendar_prefix: "YourPrefix"   # prefix used in shared calendar events
+    calendars: [primary, family]
+    task_access: true
+    receives_alerts: true           # gets Telegram alert when unknown user messages the bot
+    context_file: "primary_user_context.md"  # optional: Claude Code context file for this user
+    telegram_env_var: "PRIMARY_USER_TELEGRAM_ID"  # name of the env var holding this user's Telegram ID
+
+  # family: list of users with limited access (family calendar only, no tasks)
+  # Add one entry per family member who will use the bot.
+  # Each needs their own Telegram ID set as an env var in .env.
+  family:
+    - display_name: "Partner Name"
+      calendar_prefix: "PartnerPrefix"
+      calendars: [family]
+      task_access: false
+      receives_alerts: false
+      context_file: "secondary_user_context.md"  # optional
+      telegram_env_var: "PARTNER_TELEGRAM_ID"
+
+    # Add more family members as needed:
+    # - display_name: "Child Name"
+    #   calendar_prefix: "ChildPrefix"
+    #   calendars: [family]
+    #   task_access: false
+    #   receives_alerts: false
+    #   telegram_env_var: "CHILD_TELEGRAM_ID"
+
+# ---------------------------------------------------------------------------
+# Family members
+# ---------------------------------------------------------------------------
+# Used for:
+#   - alias resolution  (e.g. "Al" → "Alice" in queries)
+#   - event filtering   (showing only the primary user's events when asked)
+#   - AI system prompt  (so the model knows who's who)
+#
+# calendar_prefix: how this person's events appear in the shared calendar
+#                  e.g. "Alice - Piano Class" → calendar_prefix: "Alice"
+# aliases: other names/nicknames this person goes by in messages or calendar
+family_members:
+  - name: "Family Member 1"
+    calendar_prefix: "Member1"
+    aliases: ["Nickname1"]
+
+  - name: "Family Member 2"
+    calendar_prefix: "Member2"
+    aliases: ["Nickname2", "AltName2"]
+
+  - name: "Child 1"
+    calendar_prefix: "Child1"
+    aliases: ["Kid1Nickname"]
+
+  # Add more family members as needed
+
+# ---------------------------------------------------------------------------
+# Children (for group alias resolution)
+# ---------------------------------------------------------------------------
+# Messages like "what do the kids have this week?" expand to children_names
+children_keywords: ["kids", "children", "child"]
+children_names: ["Child1", "Child2"]   # should match calendar_prefix values above
+
+# ---------------------------------------------------------------------------
+# Bot memory staging (optional — Claude Code specific)
+# ---------------------------------------------------------------------------
+# When the bot learns a new fact, it stages it here for manual review.
+# Leave as default unless you know what you're doing.
+staging_file: "memory/suggestions.md"
