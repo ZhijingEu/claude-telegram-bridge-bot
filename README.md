@@ -1,6 +1,6 @@
-# Claude Telegram Calendar Bot
+# Claude Telegram Bridge Bot
 
-A personal family calendar assistant on Telegram, powered by Claude Haiku and Google Calendar. Supports natural language queries, calendar writes (create/update/delete events), task management, and web search — all from a Telegram chat.
+A digital family assistant designed to work with Claude Haiku + Google Calendar & Google Tasks. Family members can use Telegram Chat to naturally talk to the bot and coordinate events on your family calendar, manage family tasks, web search and even do basic image analysis/OCR extraction.
 
 Built and described in: *[I Built This Before Anthropic Did — and That Taught Me When to Build at All](#)* (Medium, 2026)
 
@@ -11,7 +11,8 @@ Built and described in: *[I Built This Before Anthropic Did — and That Taught 
 - **Natural language calendar queries** — "what's on this week?", "when is the next dentist appointment?"
 - **Calendar writes** — create, update, and delete events with a confirmation step before anything executes
 - **Task management** — create and complete Google Tasks
-- **Multi-user** — primary user gets full access (all calendars + tasks); family members get read-only access to the shared family calendar
+- **Image Search** — leverages Claude Haiku's native image interpretation capabilities that supports various image formats, including JPEG, PNG, GIF, and WebP
+- **Multi-user** — primary user gets full access (all calendars + tasks); authorized family members get read-only access to the shared family calendar
 - **Web search** — location queries, travel times, and recommendations via Claude's web search tool
 - **Security** — input injection detection, output anomaly filter, kill switch, and Telegram ID whitelist
 
