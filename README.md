@@ -2,7 +2,9 @@
 
 A digital family assistant designed to work with Claude Haiku + Google Calendar & Google Tasks. Family members can use Telegram Chat to naturally talk to the bot and coordinate events on your family calendar, manage family tasks, web search and even do basic image analysis/OCR extraction.
 
-Built and described in: *[I Built This Before Anthropic Did — and That Taught Me When to Build at All](#)* (Medium, 2026)
+![Image Credit : Edited version of original photo by 🇸🇮 Janko Ferlič on Unsplash]([https://example.com/image.png](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*y-d_1NGDEPB1MH2yokeOiw.jpeg))
+
+Built and described in: *[I Built This Before Anthropic Did — and That Taught Me When to Build at All](https://zhijingeu.medium.com/i-built-this-before-anthropic-did-heres-what-that-taught-me-about-when-to-build-at-all-ee12f01954ff)* (Medium, 2026)
 
 ---
 
