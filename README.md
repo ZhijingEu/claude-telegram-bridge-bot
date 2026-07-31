@@ -95,10 +95,16 @@ python src/auth.py  # or just start the bot — it will trigger auth if needed
 
 **Windows (Git Bash):**
 ```bash
-bash telegram_bot/bot_runner.sh
+bash telegram_bot/bot_runner.sh          # kills stale instances, then starts
+bash telegram_bot/bot_runner.sh stop     # stop all running instances
+bash telegram_bot/bot_runner.sh status   # report what's running
 ```
 
-**Manually:**
+Note: on Windows a healthy bot shows up as **two** `python.exe` processes — the
+venv launcher shim plus its child interpreter. That is normal, not a duplicate
+instance. `stop` kills both.
+
+**Manually (any platform):**
 ```bash
 source venv/Scripts/activate
 cd telegram_bot
@@ -118,7 +124,7 @@ Claude-telegram-bot/
 │   ├── config_loader.py      # Loads config.yaml, exposes typed constants
 │   ├── config.yaml           # Gitignored — your personal config
 │   ├── config.yaml.example   # Template
-│   └── bot_runner.sh         # Startup script (kills stale instances, starts bot)
+│   └── bot_runner.sh         # start/stop/status script (kills stale instances)
 ├── src/
 │   ├── auth.py               # Google OAuth2 flow and token management
 │   ├── calendar_client.py    # Google Calendar API wrapper
